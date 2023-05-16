@@ -37,6 +37,9 @@ def calculate_profit_loss():
     btc = request.form.get('btc')
     buying_price = request.form.get('price')
     crypto = request.form.get('crypto_selection')
+    print(btc)
+    print(buying_price)
+    print(crypto)
     cryptocoin_dict = {'DOGE':'DOGE-GBP', 'BNB':'BNB-GBP', 'BTC':'BTC-GBP', 'ETH':'ETH-GBP', 'USDT':'USDT-GBP'}
     
     data = yf.download([cryptocoin_dict[crypto]], period='1mo')

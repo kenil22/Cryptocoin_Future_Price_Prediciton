@@ -410,18 +410,20 @@ function calculate() {
             var btc = parseFloat(document.getElementById("btc").value);
             var price = parseFloat(document.getElementById("price").value);
             var crypto_selection = document.getElementById("crypto_selection").value
-
+            console.log(btc);
+            console.log(price);
+            console.log(crypto_selection);
             $.ajax({
         url:"/calculate_profit_loss",
         method:"POST",
         data:{btc:btc, price:price, crypto_selection:crypto_selection},
         success: function(response) {
-          loadingElement.style.display = "none";
             // Parse the JSON data
             var responseData = JSON.parse(response);
 
             // Extract the dates and prices
             var pl_value = responseData.profit;
+            console.log(pl_value);
             // Display the result in the output field
             document.getElementById("result").value = pl_value.toFixed(2);
         }

@@ -1,4 +1,8 @@
-import yfinance as yf
+# DOGE = 0.005280370371151401
+# BNB = 7.227682898466721
+# BTC = 3633.319348318641
+# ETH = 
+# import yfinance as yf
 
 # def get_future_price(tickers='ETH-GBP', period_tag='1M'):
 
@@ -6,24 +10,24 @@ import yfinance as yf
 # tickers = [ cryptocoin_dict[tickers]]
 # def historical_data_func(tickers='ETH-GBP', period_tag='1mo'):
 # tickers = ['DOGE-GBP']
-data = yf.download(['BTC-GBP'], period='1mo')
-data.drop("Adj Close", inplace=True, axis=1)
-data.drop("Volume", inplace=True, axis=1)
-data.drop("Open", inplace=True, axis=1)
-data.drop("High", inplace=True, axis=1)
-data.drop("Low", inplace=True, axis=1)
-data.reset_index(inplace=True)
-x = data['Close'].iloc[-1]
-x = float(x)
-print(type(x))
-Bitcoins = 5
-Buying_Price = 50
-Current_price = 10
-Profit = Current_price*Bitcoins - Buying_Price*Bitcoins 
-if Profit < 0:
-    print(f"Loss of {abs(Profit)}")
-else:
-    print(f"Profit of {Profit}")
+# data = yf.download(['BTC-GBP'], period='1mo')
+# data.drop("Adj Close", inplace=True, axis=1)
+# data.drop("Volume", inplace=True, axis=1)
+# data.drop("Open", inplace=True, axis=1)
+# data.drop("High", inplace=True, axis=1)
+# data.drop("Low", inplace=True, axis=1)
+# data.reset_index(inplace=True)
+# x = data['Close'].iloc[-1]
+# x = float(x)
+# print(type(x))
+# Bitcoins = 5
+# Buying_Price = 50
+# Current_price = 10
+# Profit = Current_price*Bitcoins - Buying_Price*Bitcoins 
+# if Profit < 0:
+#     print(f"Loss of {abs(Profit)}")
+# else:
+#     print(f"Profit of {Profit}")
     
 
 
