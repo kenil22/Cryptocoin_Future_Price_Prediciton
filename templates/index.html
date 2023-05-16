@@ -73,6 +73,31 @@
         position: absolute;
         left: 120px;
     }
+
+    .calculator{
+      position: absolute;
+    left: 813px;
+    width: 154px;
+    }
+
+    .buying-price{
+      position: absolute;
+    left: 1006px;
+    top: 138px;
+
+    }
+
+    .calculate-crypto{
+      position: absolute;
+    left: 1011px;
+    top: 213px;
+    }
+
+    .clear-button{
+      position: absolute;
+    left: 899px;
+    top: 253px;
+    }
   </style>
   <script>
     function selectTimeframe(timeframe) {
@@ -88,7 +113,33 @@
     <div class="date-classes">
         <input class="date-classes" type="date" id="datepicker" onchange="showSelectedDate()">
     </div>
+    <div class="calculator">
+      <h1>Profit/Loss Calculator</h1>
+    
+    <label for="btc">Number of coins:</label>
+    <input type="text" id="btc" name="btc"><br><br>
+    
+    <label for="result">Result:</label>
+    <input type="text" id="result" name="result" readonly><br><br>
+    <button onclick="calculate()">Calculate</button>
+    </div>
+    <div class="clear-button">
+      <button onclick="clearInputs()">Clear</button>
+    </div>
+    <div>
+      <select id="crypto_selection" class="calculate-crypto">
+        <option value="DOGE">DOGE</option>
+        <option value="BTC">BTC</option>
+        <option value="BNB">BNB</option>
+        <option value="ETH">ETH</option>
+        <option value="USDT">USDT</option>
+    </select>
+    </div>
 
+    <div class="buying-price">
+      <label for="price">Buying Price (GBP):</label>
+    <input type="text" id="price" name="price"><br><br>
+    </div>
   <div class="container">
     <select id="crypto" class="crypto-size">
         <option value="DOGE">DOGE</option>
@@ -96,7 +147,6 @@
         <option value="BNB">BNB</option>
         <option value="ETH">ETH</option>
         <option value="USDT">USDT</option>
-        <option value="None">None</option>
     </select>
 
     <div class="options" id="timeframe">
@@ -121,6 +171,34 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+
+function clearInputs() {
+  document.getElementById("result").value = "";
+  document.getElementById("btc").value = "";
+  document.getElementById("price").value = "";
+}
+
+function calculate() {
+            // Get the values from the input fields
+            var btc = parseFloat(document.getElementById("btc").value);
+            var price = parseFloat(document.getElementById("price").value);
+            var crypto_selection = document.getElementById("crypto_selection").value
+
+            $.ajax({
+        url:"/calculate_profit_loss",
+        method:"POST",
+        data:{btc:btc, price:price, crypto_selection:crypto_selection},
+        success: function(response) {
+            // Parse the JSON data
+            var responseData = JSON.parse(response);
+
+            // Extract the dates and prices
+            var pl_value = responseData.profit;
+            // Display the result in the output field
+            document.getElementById("result").value = pl_value.toFixed(2);
+        }
+      });
+    }
 
 function showSelectedDate() {
   var selectedDate = document.getElementById("datepicker").value;
