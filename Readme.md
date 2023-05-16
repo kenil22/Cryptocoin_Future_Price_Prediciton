@@ -6,7 +6,7 @@ Few steps to run this code:-
   
 3.) RUN --> python app.pyplot  
 
-###############################################################################
+###############################################################################  
 Training Script & Inferencing Script  
   
 Refer to following path 'Inferencing & Training Script'.  
