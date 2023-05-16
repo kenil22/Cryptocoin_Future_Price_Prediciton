@@ -146,7 +146,7 @@ def get_corr(chosen_crypto = "BTC-GBP"):
 
     # Extract the top ten positive and negative correlated cryptocurrencies
     top_positive_correlated = correlation_matrix[chosen_crypto].sort_values(ascending=False)[1:11]
-    top_negative_correlated = correlation_matrix[chosen_crypto].sort_values(ascending=True)[:10]
+    top_negative_correlated = pd.concat([correlation_matrix[chosen_crypto].sort_values(ascending=True)[:9],correlation_matrix[chosen_crypto].sort_values(ascending=True)[-1:]])
 
     # Distype(play) the results
     print("Top Ten Positive Correlated Cryptocurrencies:")
