@@ -14,6 +14,8 @@
       /* justify-content: space-between; */
       width: 800px;
       margin-bottom: 20px;
+      top:0px;
+      position: relative;
     }
 
     .box {
@@ -71,7 +73,7 @@
 
     .main-body{
         position: absolute;
-        left: 120px;
+        left: 65px;
     }
 
     .calculator{
@@ -92,11 +94,17 @@
     left: 1011px;
     top: 213px;
     }
-
+  
     .clear-button{
       position: absolute;
     left: 899px;
     top: 253px;
+    }
+
+    .corr-class{
+      position: fixed;
+      top:258px;
+      left:887px;
     }
 
     .loading-spinner {
@@ -117,6 +125,18 @@
   100% { transform: rotate(360deg); }
 }
 
+.table-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    table {
+      border-collapse: collapse;
+      width: 45%; /* Adjust the width as needed */
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 0px;
+    }
   </style>
   <script>
     function selectTimeframe(timeframe) {
@@ -160,6 +180,51 @@
     <input type="text" id="price" name="price"><br><br>
     </div>
 
+    <div class="corr-class">
+    <h2>Choose a cryptocurrency:</h2>
+    <select id="crypto_correlation">
+        <option value="BTC">Bitcoin</option>
+        <option value="ETH">Ethereum</option>
+        <option value="XRP">Ripple</option>
+        <option value="USDT">Tether</option>
+        <option value="USDC">USD Coin</option>
+        <option value="DOGE">Dogecoin</option>
+        <option value="XTZ">Tezos</option>
+        <option value="SOL">Solana</option>
+        <option value="TUSD-">TrueUSD</option>
+    </select>
+    <button onclick="getCorrelatedCryptos()">Get Correlated Cryptocurrencies</button>
+
+    <!-- <h3>Top Positive Correlated Cryptocurrencies</h3> -->
+    <div class="table-container">
+      <div>
+        <h2>Top 10 Positive Correlated Cryptocurrencies</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Correlation</th>
+            </tr>
+          </thead>
+          <tbody id="positiveTableBody"></tbody>
+        </table>
+      </div>
+      <div>
+        <h2>Top 10 Negative Correlated Cryptocurrencies</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Correlation</th>
+            </tr>
+          </thead>
+          <tbody id="negativeTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+ 
+  </div>
+
   <div id="loading" class="loading-spinner"></div>
 
   <div class="container">
@@ -194,6 +259,39 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 
+function getCorrelatedCryptos() {
+            var chosenCrypto = document.getElementById('crypto_correlation').value;
+
+            console.log(chosenCrypto);
+            $.ajax({
+                url: '/get_correlated_cryptos',
+                method: 'POST',
+                data: {chosenCrypto: chosenCrypto},
+                success: function(response) {
+                    var positiveCryptos = response.positive_cryptos;
+                    var negativeCryptos = response.negative_cryptos;
+                    console.log(positiveCryptos);
+                    console.log(negativeCryptos);
+                    // Display top positive correlated cryptocurrencies
+                    populateTable(positiveCryptos, 'positiveTableBody');
+                    populateTable(negativeCryptos, 'negativeTableBody');
+                }
+            });
+        }
+
+        function populateTable(data, tableId) {
+      var tableBody = document.getElementById(tableId);
+      for (var i = 0; i < data.Symbol.length; i++) {
+        var row = document.createElement('tr');
+        var symbolCell = document.createElement('td');
+        var correlationCell = document.createElement('td');
+        symbolCell.textContent = data.Symbol[i];
+        correlationCell.textContent = data.Correlation[i];
+        row.appendChild(symbolCell);
+        row.appendChild(correlationCell);
+        tableBody.appendChild(row);
+      }
+    }
 function clearInputs() {
   document.getElementById("result").value = "";
   document.getElementById("btc").value = "";

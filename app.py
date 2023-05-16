@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from final_predicting import get_future_price, historical_data_func
+from final_predicting import get_future_price, historical_data_func, get_corr
 import json
 import yfinance as yf
 
@@ -38,7 +38,7 @@ def calculate_profit_loss():
     buying_price = request.form.get('price')
     crypto = request.form.get('crypto_selection')
     cryptocoin_dict = {'DOGE':'DOGE-GBP', 'BNB':'BNB-GBP', 'BTC':'BTC-GBP', 'ETH':'ETH-GBP', 'USDT':'USDT-GBP'}
-
+    
     data = yf.download([cryptocoin_dict[crypto]], period='1mo')
     data.drop("Adj Close", inplace=True, axis=1)
     data.drop("Volume", inplace=True, axis=1)
@@ -65,6 +65,18 @@ def calculate_profit_loss():
         return jsonify(json_data)
 
     # return True
+
+@app.route('/get_correlated_cryptos', methods=['POST'])
+def get_corr_func():
+    chosenCrypto = request.form.get('chosenCrypto')
+    print(chosenCrypto)
+    cryptocoin_dict={"BTC":"BTC-GBP","ETH":"ETH-GBP","XRP":"XRP-GBP","USDT":"USDT-GBP","USDC":"USDC-GBP","DOGE":"DOGE-GBP","XTZ":"XTZ-GBP","SOL":"SOL-GBP","TUSD":"TUSD-GBP"}
+    print(cryptocoin_dict[chosenCrypto])
+    pos, neg = get_corr(chosen_crypto = cryptocoin_dict[chosenCrypto])
+
+    return jsonify({'positive_cryptos': pos, 'negative_cryptos': neg})
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
