@@ -71,8 +71,12 @@ def get_corr_func():
     chosenCrypto = request.form.get('chosenCrypto')
     print(chosenCrypto)
     cryptocoin_dict={"BTC":"BTC-GBP","ETH":"ETH-GBP","XRP":"XRP-GBP","USDT":"USDT-GBP","USDC":"USDC-GBP","DOGE":"DOGE-GBP","XTZ":"XTZ-GBP","SOL":"SOL-GBP","TUSD":"TUSD-GBP"}
-    print(cryptocoin_dict[chosenCrypto])
+    # print(cryptocoin_dict[chosenCrypto])
     pos, neg = get_corr(chosen_crypto = cryptocoin_dict[chosenCrypto])
+    print(pos)
+    print(type(pos))
+    print(neg)
+    print(type(neg))
 
     return jsonify({'positive_cryptos': pos, 'negative_cryptos': neg})
 

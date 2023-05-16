@@ -294,7 +294,7 @@
         <option value="DOGE">Dogecoin</option>
         <option value="XTZ">Tezos</option>
         <option value="SOL">Solana</option>
-        <option value="TUSD-">TrueUSD</option>
+        <option value="TUSD">TrueUSD</option>
     </select>
     <button class="get-corr-tag" onclick="getCorrelatedCryptos()">Get Correlated Cryptocurrencies</button>
 
@@ -383,7 +383,11 @@ function getCorrelatedCryptos() {
         }
 
         function populateTable(data, tableId) {
+          
       var tableBody = document.getElementById(tableId);
+        // Clear existing table rows
+  tableBody.innerHTML = "";
+
       for (var i = 0; i < data.Symbol.length; i++) {
         var row = document.createElement('tr');
         var symbolCell = document.createElement('td');
