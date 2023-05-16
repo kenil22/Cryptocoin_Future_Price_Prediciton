@@ -13,7 +13,6 @@
 
     .options {
       display: flex;
-      /* justify-content: space-between; */
       width: 800px;
       margin-bottom: 20px;
       top:47px;
@@ -65,7 +64,7 @@
     .date-classes{
       position: relative;
     left: 499px;
-    top: 122px;
+    top: 159px;
     }
 
     .submit-btn{
@@ -74,11 +73,6 @@
     left: 278px;
     height: 21px;
     }
-
-    /* .main-body{
-        position: absolute;
-        left: 65px;
-    } */
 
     .calculator{
       position: absolute;
@@ -204,7 +198,7 @@
 
     .choose-crypto-tag{
       position: absolute;
-      top:109px;
+      top:70px;
       width: 177px;
       left:824px;
     }
@@ -236,6 +230,20 @@
       top:-54px;
       color: green;
     }
+
+    .rmse-text-tag{
+      position: absolute;
+      top:166px;
+      left:704px;
+      width: 62px;
+    }
+
+    .RMSE-title-tag{
+      position: absolute;
+      top:126px;
+      left:705px;
+      width: 62px;
+    }
   </style>
   <script>
     function selectTimeframe(timeframe) {
@@ -250,6 +258,12 @@
 
     <div>
         <input class="date-classes" type="date" id="datepicker" onchange="showSelectedDate()">
+    </div>
+    <div>
+      <h6 class="RMSE-title-tag">RMSE Score</h6>
+    </div>
+    <div>
+      <input class="rmse-text-tag" type="text" id="rmse" name="rmse"><br><br>
     </div>
     <div class="pl-tag">
       <h1>Profit/Loss Calculator</h1>
@@ -298,10 +312,8 @@
     </select>
     <button class="get-corr-tag" onclick="getCorrelatedCryptos()">Get Correlated Cryptocurrencies</button>
 
-    <!-- <h3>Top Positive Correlated Cryptocurrencies</h3> -->
     <div class="table-container">
       <div>
-        <!-- <h2>Positive Correlated Cryptocurrencies</h2> -->
         <table class="pos-table-tag">
           <thead>
             <tr>
@@ -313,7 +325,6 @@
         </table>
       </div>
       <div>
-        <!-- <h2>Negative Correlated Cryptocurrencies</h2> -->
         <table class="neg-table-tag">
           <thead>
             <tr>
@@ -352,10 +363,8 @@
         <button class="submit-btn" onclick="selectTimeframe('None')">Predict</button>
     </div>
     <div class="chart-container">
-      <!-- Add your chart or content inside this div -->
       <canvas id="chartCanvas"></canvas>
     </div>
-    <!-- <button class="submit-button" id="submit-btn">Submit</button> -->
   </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -441,12 +450,11 @@ window.onload = function() {
 };
   var chart = null;
   function selectTimeframe(timeframe){
-    // var timeframe = document.getElementById("timeframe").value
     var crypto = document.getElementById("crypto").value
     var date = document.getElementById("datepicker").value
     if (timeframe === "None" && date === "") {
     // Show alert with the error message
-    alert("Please select a timeframe and date.");
+    alert("Please select a date.");
     return; // Exit the function
     }
 
@@ -479,10 +487,10 @@ window.onload = function() {
         // Extract the dates and prices
         var dates = responseData.dates;
         var prices = responseData.prices;
+        var rmse = responseData.rmse;
 
-        
-       
-        
+        document.getElementById("rmse").value = rmse;
+
         // Create the chart
         var ctx = document.getElementById('chartCanvas').getContext('2d');
         if (chart) {
@@ -515,39 +523,6 @@ window.onload = function() {
     })
 
   }
-
-  // function display_graph(dates, prices) {
-  //     // Get the canvas element
-  //     const canvas = document.getElementById('chartCanvas');
-  //     const ctx = canvas.getContext('2d');
-
-  //     // Create the chart
-  //     new Chart(ctx, {
-  //       type: 'line',
-  //       data: {
-  //         labels: dates,
-  //         datasets: [{
-  //           label: 'Price',
-  //           data: prices,
-  //           borderColor: 'blue',
-  //           fill: false
-  //         }]
-  //       },
-  //       options: {
-  //         responsive: true,
-  //         hover: {
-  //           mode: 'nearest',
-  //           intersect: true
-  //         },
-  //         tooltips: {
-  //           mode: 'index',
-  //           intersect: false
-  //         }
-  //       }
-  //     });
-  //   }
-
-  // Add event listener to retrieve data on hover
 
 </script>
 </body>

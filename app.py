@@ -15,7 +15,13 @@ def process_selection():
     timeframe = request.form.get("timeframe")
     cryptocoin = request.form.get("crypto")
     date = request.form.get("date")
-        
+    cryptocoin_RMSE_scores = {"DOGE":"0.005280370371151401",
+"BNB":"7.227682898466721",
+"BTC" :"3633.319348318641",
+"ETH":"19.364336351504054",
+"USDT" :"0.004571586921625304"}
+    
+    RMSE_SCORE = cryptocoin_RMSE_scores[cryptocoin]
     print(timeframe)
     print(cryptocoin)
     print(date)
@@ -25,7 +31,8 @@ def process_selection():
         dates, prices = historical_data_func(tickers=cryptocoin, period_tag=timeframe)
     response_data = {
         'dates': dates,
-        'prices': prices
+        'prices': prices,
+        "rmse":RMSE_SCORE
     }
 
     json_data = json.dumps(response_data)
@@ -40,8 +47,9 @@ def calculate_profit_loss():
     print(btc)
     print(buying_price)
     print(crypto)
-    cryptocoin_dict = {'DOGE':'DOGE-GBP', 'BNB':'BNB-GBP', 'BTC':'BTC-GBP', 'ETH':'ETH-GBP', 'USDT':'USDT-GBP'}
+
     
+    cryptocoin_dict = {'DOGE':'DOGE-GBP', 'BNB':'BNB-GBP', 'BTC':'BTC-GBP', 'ETH':'ETH-GBP', 'USDT':'USDT-GBP'}
     data = yf.download([cryptocoin_dict[crypto]], period='1mo')
     data.drop("Adj Close", inplace=True, axis=1)
     data.drop("Volume", inplace=True, axis=1)

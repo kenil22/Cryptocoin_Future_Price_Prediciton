@@ -1,7 +1,9 @@
 # DOGE = 0.005280370371151401
 # BNB = 7.227682898466721
 # BTC = 3633.319348318641
-# ETH = 
+# ETH = 19.364336351504054
+# USDT = 0.004571586921625304
+
 # import yfinance as yf
 
 # def get_future_price(tickers='ETH-GBP', period_tag='1M'):
