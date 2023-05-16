@@ -7,6 +7,8 @@
       flex-direction: column;
       align-items: center;
       margin-top: 4px;
+      position: absolute;
+      left:-8px;
     }
 
     .options {
@@ -14,8 +16,9 @@
       /* justify-content: space-between; */
       width: 800px;
       margin-bottom: 20px;
-      top:0px;
+      top:47px;
       position: relative;
+      left:21px;
     }
 
     .box {
@@ -42,6 +45,7 @@
       border: 1px solid black;
       top: 137px;
       position: absolute;
+      left:20px
     }
 
     .submit-button{
@@ -53,52 +57,53 @@
 
     .crypto-size{
         position: absolute;
-        top: 74px;
-        left: 411px;
-        height: 37px;
+        top: 97px;
+        left: 447px;
+        height: 35px;
     }
 
     .date-classes{
-        position: relative;
-    left: 241px;
-    top: 36px;
+      position: relative;
+    left: 499px;
+    top: 122px;
     }
 
     .submit-btn{
-        position: relative;
-        top:-10px;
-        left: 232px;
-        height: 21px;
+      position: relative;
+    top: 40px;
+    left: 278px;
+    height: 21px;
     }
 
-    .main-body{
+    /* .main-body{
         position: absolute;
         left: 65px;
-    }
+    } */
 
     .calculator{
       position: absolute;
     left: 813px;
     width: 154px;
+    top:-56px;
     }
 
     .buying-price{
       position: absolute;
     left: 1006px;
-    top: 138px;
+    top: 66px;
 
     }
 
     .calculate-crypto{
       position: absolute;
-    left: 1011px;
-    top: 213px;
+    left: 1135px;
+    top: 105px;
     }
   
     .clear-button{
       position: absolute;
     left: 899px;
-    top: 253px;
+    top: 214px;
     }
 
     .corr-class{
@@ -134,8 +139,102 @@
       width: 45%; /* Adjust the width as needed */
     }
     th, td {
-      border: 1px solid black;
+      border: 3px solid black;
       padding: 0px;
+    }
+
+    .choose-crypto{
+      position: absolute;
+    }
+
+    .pl-tag{
+      position: absolute;
+      left:876px;
+      top:1px;
+    }
+
+    .btc-tag{
+      position: absolute;
+      top:116px;
+      left: 20px;
+    }
+
+    .btc-text-tag{
+      position: absolute;
+      top:134px;
+      left:20px;
+    }
+
+    .buying-price-tag{
+      position: absolute;
+    top: -7px;
+    width: 140px;
+    left: 52px;
+    }
+
+    .buying-text-tag{
+      position: absolute;
+    top: 11px;
+    left: 49px;
+    }
+
+    .result-tag{
+      position: absolute;
+      top:160px;
+      left:88px;
+    }
+
+    .result-text-tag{
+      position: absolute;
+      top:161px;
+      left:137px;
+    }
+
+    .calculate-button-tag{
+      position: absolute;
+      top:187px;
+      left:155px;
+    }
+
+    .clear-button-tag{
+      position: absolute;
+      top:-83px;
+      left:153px;
+    }
+
+    .choose-crypto-tag{
+      position: absolute;
+      top:109px;
+      width: 177px;
+      left:824px;
+    }
+
+    .neg-table-tag{
+      position: absolute;
+      left:164px;
+      top:-54px;
+      color: red;
+    }
+
+    .crypto-corr-tag{
+      position: absolute;
+      left:126px;
+      top:-98px;
+    }
+
+    .get-corr-tag{
+      position: absolute;
+      top:-107px;
+      left:225px;
+      width: 115px;;
+      height: 34px;;
+    }
+
+    .pos-table-tag{
+      position: absolute;
+      left:-58px;
+      top:-54px;
+      color: green;
     }
   </style>
   <script>
@@ -149,21 +248,23 @@
 </head>
 <body class="main-body">
 
-    <div class="date-classes">
+    <div>
         <input class="date-classes" type="date" id="datepicker" onchange="showSelectedDate()">
     </div>
-    <div class="calculator">
+    <div class="pl-tag">
       <h1>Profit/Loss Calculator</h1>
+    </div>
+    <div class="calculator">
     
-    <label for="btc">Number of coins:</label>
-    <input type="text" id="btc" name="btc"><br><br>
+    <label class="btc-tag" for="btc">Number of coins:</label>
+    <input class="btc-text-tag" type="text" id="btc" name="btc"><br><br>
     
-    <label for="result">Result:</label>
-    <input type="text" id="result" name="result" readonly><br><br>
-    <button onclick="calculate()">Calculate</button>
+    <label class="result-tag" for="result">Result:</label>
+    <input class="result-text-tag" type="text" id="result" name="result" readonly><br><br>
+    <button class="calculate-button-tag" onclick="calculate()">Calculate</button>
     </div>
     <div class="clear-button">
-      <button onclick="clearInputs()">Clear</button>
+      <button class="clear-button-tag" onclick="clearInputs()">Clear</button>
     </div>
     <div>
       <select id="crypto_selection" class="calculate-crypto">
@@ -176,13 +277,15 @@
     </div>
 
     <div class="buying-price">
-      <label for="price">Buying Price (GBP):</label>
-    <input type="text" id="price" name="price"><br><br>
+      <label class="buying-price-tag" for="price">Buying Price (GBP):</label>
+    <input class="buying-text-tag" type="text" id="price" name="price"><br><br>
     </div>
 
+    <div class="choose-crypto">
+    <h4 class="choose-crypto-tag">Choose a cryptocurrency:</h4>
+  </div>
     <div class="corr-class">
-    <h2>Choose a cryptocurrency:</h2>
-    <select id="crypto_correlation">
+    <select class="crypto-corr-tag" id="crypto_correlation">
         <option value="BTC">Bitcoin</option>
         <option value="ETH">Ethereum</option>
         <option value="XRP">Ripple</option>
@@ -193,13 +296,13 @@
         <option value="SOL">Solana</option>
         <option value="TUSD-">TrueUSD</option>
     </select>
-    <button onclick="getCorrelatedCryptos()">Get Correlated Cryptocurrencies</button>
+    <button class="get-corr-tag" onclick="getCorrelatedCryptos()">Get Correlated Cryptocurrencies</button>
 
     <!-- <h3>Top Positive Correlated Cryptocurrencies</h3> -->
     <div class="table-container">
       <div>
-        <h2>Top 10 Positive Correlated Cryptocurrencies</h2>
-        <table>
+        <!-- <h2>Positive Correlated Cryptocurrencies</h2> -->
+        <table class="pos-table-tag">
           <thead>
             <tr>
               <th>Symbol</th>
@@ -210,8 +313,8 @@
         </table>
       </div>
       <div>
-        <h2>Top 10 Negative Correlated Cryptocurrencies</h2>
-        <table>
+        <!-- <h2>Negative Correlated Cryptocurrencies</h2> -->
+        <table class="neg-table-tag">
           <thead>
             <tr>
               <th>Symbol</th>
