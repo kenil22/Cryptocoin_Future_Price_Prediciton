@@ -98,6 +98,25 @@
     left: 899px;
     top: 253px;
     }
+
+    .loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
   </style>
   <script>
     function selectTimeframe(timeframe) {
@@ -140,6 +159,9 @@
       <label for="price">Buying Price (GBP):</label>
     <input type="text" id="price" name="price"><br><br>
     </div>
+
+  <div id="loading" class="loading-spinner"></div>
+
   <div class="container">
     <select id="crypto" class="crypto-size">
         <option value="DOGE">DOGE</option>
@@ -189,6 +211,7 @@ function calculate() {
         method:"POST",
         data:{btc:btc, price:price, crypto_selection:crypto_selection},
         success: function(response) {
+          loadingElement.style.display = "none";
             // Parse the JSON data
             var responseData = JSON.parse(response);
 
@@ -204,20 +227,45 @@ function showSelectedDate() {
   var selectedDate = document.getElementById("datepicker").value;
   document.getElementById("selected-date").textContent = selectedDate;
 }
+window.onload = function() {
+  // Hide the loading element when the page finishes loading
+  var loadingElement = document.getElementById("loading");
+  loadingElement.style.display = "none";
+};
   var chart = null;
   function selectTimeframe(timeframe){
     // var timeframe = document.getElementById("timeframe").value
     var crypto = document.getElementById("crypto").value
     var date = document.getElementById("datepicker").value
+    if (timeframe === "None" && date === "") {
+    // Show alert with the error message
+    alert("Please select a timeframe and date.");
+    return; // Exit the function
+    }
+
+    var today = new Date();
+    console.log(today);
+     var selectedDate = new Date(date);
+
+    // Check if the selected date is today or in the past
+    if (selectedDate <= today) {
+      // Show alert with the error message
+      alert("Please select a date in the future.");
+      return; // Exit the function
+    }
 
     console.log(timeframe);
     console.log(crypto);
     console.log(date);
+    // Show the loading element
+  var loadingElement = document.getElementById("loading");
+  loadingElement.style.display = "block";
     $.ajax({
         url:"/process_selection",
         method:"POST",
         data:{timeframe:timeframe, crypto:crypto, date:date},
         success: function(response) {
+          loadingElement.style.display = "none";
         // Parse the JSON data
         var responseData = JSON.parse(response);
 
