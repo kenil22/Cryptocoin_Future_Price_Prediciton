@@ -22,9 +22,7 @@ def process_selection():
 "USDT" :"0.004571586921625304"}
     
     RMSE_SCORE = cryptocoin_RMSE_scores[cryptocoin]
-    print(timeframe)
-    print(cryptocoin)
-    print(date)
+
     if timeframe == 'None':
         predicted_price, dates, prices=get_future_price(Input_Date=str(date), tickers=cryptocoin)
     else:
@@ -44,11 +42,7 @@ def calculate_profit_loss():
     btc = request.form.get('btc')
     buying_price = request.form.get('price')
     crypto = request.form.get('crypto_selection')
-    print(btc)
-    print(buying_price)
-    print(crypto)
 
-    
     cryptocoin_dict = {'DOGE':'DOGE-GBP', 'BNB':'BNB-GBP', 'BTC':'BTC-GBP', 'ETH':'ETH-GBP', 'USDT':'USDT-GBP'}
     data = yf.download([cryptocoin_dict[crypto]], period='1mo')
     data.drop("Adj Close", inplace=True, axis=1)
@@ -75,19 +69,14 @@ def calculate_profit_loss():
         json_data = json.dumps(response_data)
         return jsonify(json_data)
 
-    # return True
 
 @app.route('/get_correlated_cryptos', methods=['POST'])
 def get_corr_func():
     chosenCrypto = request.form.get('chosenCrypto')
-    print(chosenCrypto)
+
     cryptocoin_dict={"BTC":"BTC-GBP","ETH":"ETH-GBP","XRP":"XRP-GBP","USDT":"USDT-GBP","USDC":"USDC-GBP","DOGE":"DOGE-GBP","XTZ":"XTZ-GBP","SOL":"SOL-GBP","TUSD":"TUSD-GBP"}
-    # print(cryptocoin_dict[chosenCrypto])
+
     pos, neg = get_corr(chosen_crypto = cryptocoin_dict[chosenCrypto])
-    print(pos)
-    print(type(pos))
-    print(neg)
-    print(type(neg))
 
     return jsonify({'positive_cryptos': pos, 'negative_cryptos': neg})
 
