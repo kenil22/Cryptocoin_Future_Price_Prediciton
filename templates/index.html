@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .options {
+      display: flex;
+      /* justify-content: space-between; */
+      width: 800px;
+      margin-bottom: 20px;
+    }
+
+    .box {
+        width: 64px;
+        height: 35px;
+        border: 1px solid black;
+        display: flex;
+        cursor: pointer;
+        /* position: absolute; */
+        top: 50px;
+        position: relative;
+        flex-direction: column;
+        left: -1px;
+    }
+    
+
+    .box:hover {
+      background-color: lightgray;
+    }
+
+    .chart-container {
+      width: 800px;
+      height: 400px;
+      border: 1px solid black;
+      top: 137px;
+      position: absolute;
+    }
+
+    .submit-button{
+        left: 530px;
+        position: absolute;
+        top: 80px;
+        height: 40px;
+    }
+
+    .crypto-size{
+        position: absolute;
+        top: 74px;
+        left: 411px;
+        height: 37px;
+    }
+
+    .date-classes{
+        position: relative;
+    left: 241px;
+    top: 36px;
+    }
+
+    .submit-btn{
+        position: relative;
+        top:-10px;
+        left: 232px;
+        height: 21px;
+    }
+
+    .main-body{
+        position: absolute;
+        left: 120px;
+    }
+  </style>
+  <script>
+    function selectTimeframe(timeframe) {
+      // Replace this function with your desired action for each timeframe
+      console.log("Selected timeframe:", timeframe);
+    }
+
+
+  </script>
+</head>
+<body class="main-body">
+
+    <div class="date-classes">
+        <input class="date-classes" type="date" id="datepicker" onchange="showSelectedDate()">
+    </div>
+
+  <div class="container">
+    <select id="crypto" class="crypto-size">
+        <option value="DOGE">DOGE</option>
+        <option value="BTC">BTC</option>
+        <option value="BNB">BNB</option>
+        <option value="ETH">ETH</option>
+        <option value="USDT">USDT</option>
+        <option value="None">None</option>
+    </select>
+
+    <div class="options" id="timeframe">
+      <div class="box" value="max" onclick="selectTimeframe('max')">1 Year</div>
+      <div class="box" value="5y" onclick="selectTimeframe('5y')">5 Years</div>
+      <div class="box" value="1y" onclick="selectTimeframe('1y')">Max</div>
+      <div class="box" value="ytd" onclick="selectTimeframe('ytd')">YTD</div>
+      <div class="box" value="6mo" onclick="selectTimeframe('6mo')">6 Months</div>
+      <div class="box" value="1mo" onclick="selectTimeframe('1mo')">1 Month</div>
+    </div>
+
+    <div>
+        <button class="submit-btn" onclick="selectTimeframe('None')">Predict</button>
+    </div>
+    <div class="chart-container">
+      <!-- Add your chart or content inside this div -->
+      <canvas id="chartCanvas"></canvas>
+    </div>
+    <!-- <button class="submit-button" id="submit-btn">Submit</button> -->
+  </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+function showSelectedDate() {
+  var selectedDate = document.getElementById("datepicker").value;
+  document.getElementById("selected-date").textContent = selectedDate;
+}
+  var chart = null;
+  function selectTimeframe(timeframe){
+    // var timeframe = document.getElementById("timeframe").value
+    var crypto = document.getElementById("crypto").value
+    var date = document.getElementById("datepicker").value
+
+    console.log(timeframe);
+    console.log(crypto);
+    console.log(date);
+    $.ajax({
+        url:"/process_selection",
+        method:"POST",
+        data:{timeframe:timeframe, crypto:crypto, date:date},
+        success: function(response) {
+        // Parse the JSON data
+        var responseData = JSON.parse(response);
+
+        // Extract the dates and prices
+        var dates = responseData.dates;
+        var prices = responseData.prices;
+
+        
+       
+        
+        // Create the chart
+        var ctx = document.getElementById('chartCanvas').getContext('2d');
+        if (chart) {
+        chart.destroy();
+      }
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Price',
+                    data: prices,
+                    borderColor: 'blue',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                }
+            }
+        });
+    }
+    })
+
+  }
+
+  // function display_graph(dates, prices) {
+  //     // Get the canvas element
+  //     const canvas = document.getElementById('chartCanvas');
+  //     const ctx = canvas.getContext('2d');
+
+  //     // Create the chart
+  //     new Chart(ctx, {
+  //       type: 'line',
+  //       data: {
+  //         labels: dates,
+  //         datasets: [{
+  //           label: 'Price',
+  //           data: prices,
+  //           borderColor: 'blue',
+  //           fill: false
+  //         }]
+  //       },
+  //       options: {
+  //         responsive: true,
+  //         hover: {
+  //           mode: 'nearest',
+  //           intersect: true
+  //         },
+  //         tooltips: {
+  //           mode: 'index',
+  //           intersect: false
+  //         }
+  //       }
+  //     });
+  //   }
+
+  // Add event listener to retrieve data on hover
+
+</script>
+</body>
+</html>
