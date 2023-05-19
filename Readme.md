@@ -11,4 +11,4 @@ Training Script & Inferencing Script
   
 Refer to following path 'Inferencing & Training Script'.  
 
-![Alt text](Overall-View.jpg?raw=true "Optional Title")
+![ScreenShot](https://raw.github.com/kenil22/Cryptocurrency_Price_Prediction_Using_LSTM/main/Overall-View.jpg)
