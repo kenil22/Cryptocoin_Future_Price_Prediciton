@@ -10,8 +10,3 @@ Few steps to run this code:-
 Training Script & Inferencing Script  
   
 Refer to following path 'Inferencing & Training Script'.  
-
-### Output  
-- **SCREENSHOTS OF FRONTEND**  
--Screenshots:  
-- ![Screenshot1](https://github.com/kenil22/Cryptocurrency_Price_Prediction_Using_LSTM/blob/main/Overall-View.jpg)
