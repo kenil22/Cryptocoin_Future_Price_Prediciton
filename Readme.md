@@ -11,4 +11,7 @@ Training Script & Inferencing Script
   
 Refer to following path 'Inferencing & Training Script'.  
 
-<img src="static\Overall-View.jpg" alt="Alt Text" width="300" height="200">
+### Output  
+- **SCREENSHOTS OF FRONTEND**  
+-Screenshots:  
+- ![Screenshot1](https://github.com/kenil22/Cryptocurrency_Price_Prediction_Using_LSTM/Overall-View.jpg)
