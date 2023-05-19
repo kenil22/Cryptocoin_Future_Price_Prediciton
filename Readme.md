@@ -14,4 +14,4 @@ Refer to following path 'Inferencing & Training Script'.
 ### Output  
 - **SCREENSHOTS OF FRONTEND**  
 -Screenshots:  
-- ![Screenshot1](https://github.com/kenil22/Cryptocurrency_Price_Prediction_Using_LSTM/Overall-View.jpg)
+- ![Screenshot1](https://github.com/kenil22/Cryptocurrency_Price_Prediction_Using_LSTM/blob/main/Overall-View.jpg)
