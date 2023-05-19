@@ -11,4 +11,4 @@ Training Script & Inferencing Script
   
 Refer to following path 'Inferencing & Training Script'.  
 
-![Alt text](Overall-View.jpg)
+<img src="Overall-View.jpg" alt="Alt Text" width="300" height="200">
