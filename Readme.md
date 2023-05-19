@@ -10,3 +10,5 @@ Few steps to run this code:-
 Training Script & Inferencing Script  
   
 Refer to following path 'Inferencing & Training Script'.  
+
+![Alt text](Overall-View.jpg?raw=true "Optional Title")
