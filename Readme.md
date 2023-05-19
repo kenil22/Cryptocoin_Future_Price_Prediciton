@@ -11,4 +11,6 @@ Training Script & Inferencing Script
   
 Refer to following path 'Inferencing & Training Script'.  
 
-![Screenshot](Overall-View.jpg)
+<div align="center">
+    <img src="Overall-View.jpg" width="400px"</img> 
+</div>
