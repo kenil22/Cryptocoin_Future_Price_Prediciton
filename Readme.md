@@ -16,6 +16,27 @@ Now I've done my training on Google Colab which provides GPU which is enough to 
 2. From the **Historical Data** upload any one csv file of cryptocoin data to google colab and keep the path of that file in the training data path cell.  
     <img width="400" alt="Sample image of output" src="Training_Path.PNG" />
 3. Execute remaining cells, by setting parameter values. Keep in mind while measuring RMSE score, it should be lower for better performance.  
-4. Once training is completed, save the file with .h5 format so it can used later on.
+4. Once training is completed, save the file with .h5 format and export it and save in the **models** directory.
+5. You can train multiple models by following **step 2 to step 4**.
+
+## How to run this project
+Keep in mind that whatever the models you've trained, keep their symbols in the HTML file so you can get option to select symbols and view their future price. Check below attached image to get idea.  
+<img width="400" alt="Sample image of output" src="Overall-View.jpg" />
+
+## Features
+1. We can get the data for specific period of time for selected cryptocoin.
+ 
+2. We can get the future price of selected cryptocoin.
+    
+   <img width="400" alt="Sample image of output" src="Future-Price-Prediction.jpg" />
+
+3. If we have any cryptocoin, let say Bitcoin. I have bought 1 Bitcoin at 5 GBP, then currently I am in Profit or Loss. You can use calculator at the top right corner for this case.
+   
+   <img width="400" alt="Sample image of output" src="User-Functionality.jpg" />  
+
+4. We can find the correlation between some of the cryptocoins.
+    
+   <img width="400" alt="Sample image of output" src="Coorelation-Among-Cryptocoins.jpg" />
 
 
+**Thank you for your time !**
