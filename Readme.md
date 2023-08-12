@@ -25,6 +25,7 @@ Keep in mind that whatever the models you've trained, keep their symbols in the 
 2. Activate conda environment using **conda activate <your_env_name>**.
 3. pip install -r requirements.txt .
 4. python **app.py**.
+   
 <img width="400" alt="Sample image of output" src="Overall-View.jpg" />
 
 ## Features
