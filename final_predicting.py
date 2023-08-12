@@ -1,17 +1,10 @@
 import datetime
 from datetime import datetime, timedelta
-import datetime as dt
 import pandas as pd
-import os
-import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import load_model
 scaler = MinMaxScaler(feature_range=(0,1))
 import numpy as np
-import plotly.graph_objects as go
-
-#################################################################################
-# !pip install yfinance
 import yfinance as yf
 
 def get_future_price(tickers='ETH-GBP', Input_Date='2023-05-18'):
