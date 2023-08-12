@@ -13,4 +13,4 @@ The yahoofinance API has been very useful for me to get real-time data of any cr
 
 Now I've done my training on Google Colab which provides GPU which is enough to train model on this type of data. In order to train model, follow below mentioned steps:-
 1. Upload the **Inferencing & Training Script\Bitcoin_Price_Prediction.ipynb** on Google Colab and select GPU as runtime.
-2. From the **Historical Data** upload any one csv file of cryptocoin data to google colab and keep the path of that file in the training data path cell.  <img width="300"  src="Training_Path.PNG" />
+2. From the **Historical Data** upload any one csv file of cryptocoin data to google colab and keep the path of that file in the training data path cell.  ![Sample Image](Training_Path.PNG)
