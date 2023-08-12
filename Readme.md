@@ -9,8 +9,12 @@ The yahoofinance API has been very useful for me to get real-time data of any cr
 3. Now run **Data_Preparation.py** file, which will fetch the symbol of cryptocoin one by one from the csv file(refer to step 2 for csv file) . After some time, you will see csv files of the cryptocoins with real-time data in it.
 4. Now, we have all the data for training and testing.
 
-## Training & Testing
+## Training
 
 Now I've done my training on Google Colab which provides GPU which is enough to train model on this type of data. In order to train model, follow below mentioned steps:-
 1. Upload the **Inferencing & Training Script\Bitcoin_Price_Prediction.ipynb** on Google Colab and select GPU as runtime.
-2. From the **Historical Data** upload any one csv file of cryptocoin data to google colab and keep the path of that file in the training data path cell.  ![Sample Image](Training_Path.PNG)
+2. From the **Historical Data** upload any one csv file of cryptocoin data to google colab and keep the path of that file in the training data path cell.  <img width="400" alt="Sample image of output" src="Training_Path.PNG" />
+3. Execute remaining cells, by setting parameter values. Keep in mind while measuring RMSE score, it should be lower for better performance.
+4. Once training is completed, save the file with .h5 format so it can used later on.
+
+
