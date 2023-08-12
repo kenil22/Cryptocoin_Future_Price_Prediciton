@@ -21,6 +21,10 @@ Now I've done my training on Google Colab which provides GPU which is enough to 
 
 ## How to run this project
 Keep in mind that whatever the models you've trained, keep their symbols in the HTML file so you can get option to select symbols and view their future price. Check below attached image to get idea.  
+1. create conda environment using **conda create -n <your_env_name> python=3.10.10**.
+2. Activate conda environment using **conda activate <your_env_name>**.
+3. pip install -r requirements.txt .
+4. python **app.py**.
 <img width="400" alt="Sample image of output" src="Overall-View.jpg" />
 
 ## Features
