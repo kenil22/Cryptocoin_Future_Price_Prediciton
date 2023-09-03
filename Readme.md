@@ -26,22 +26,22 @@ Keep in mind that whatever the models you've trained, keep their symbols in the 
 3. pip install -r requirements.txt .
 4. python **app.py**.
    
-<img width="400" alt="Sample image of output" src="Overall-View.jpg" />
+<img src="https://github.com/kenil22/Cryptocoin_Future_Price_Prediciton/assets/73990461/da3d0611-b92b-4654-a809-789d9cd74fe1" width="200" alt="Overall-View">
 
 ## Features
 1. We can get the data for specific period of time for selected cryptocoin.
  
 2. We can get the future price of selected cryptocoin.
     
-   <img width="400" alt="Sample image of output" src="Future-Price-Prediction.jpg" />
+   <img src="https://github.com/kenil22/Cryptocoin_Future_Price_Prediciton/assets/73990461/26d8b1ec-eedc-47eb-a1e3-0e336c169703" width="200" alt="Future-Price-Prediction">
 
 3. If we have any cryptocoin, let say Bitcoin. I have bought 1 Bitcoin at 5 GBP, then currently I am in Profit or Loss. You can use calculator at the top right corner for this case.
    
-   <img width="400" alt="Sample image of output" src="User-Functionality.jpg" />  
+   <img src="https://github.com/kenil22/Cryptocoin_Future_Price_Prediciton/assets/73990461/8ace86ce-dbc0-4c8a-abab-85e404b105dd" width="200" alt="User-Functionality">  
 
 4. We can find the correlation between some of the cryptocoins.
     
-   <img width="400" alt="Sample image of output" src="Coorelation-Among-Cryptocoins.jpg" />
+   <img src="https://github.com/kenil22/Cryptocoin_Future_Price_Prediciton/assets/73990461/c8896f4c-e6ed-47eb-a075-74771e995ee0" width="200" alt="Coorelation-Among-Cryptocoins">
 
 
 **Thank you for your time !**
